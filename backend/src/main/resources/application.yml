@@ -1,0 +1,15 @@
+
+spring:
+  profiles:
+    active: development
+
+mybatis:
+  mapper-locations: classpath*:**/mappers/*Mapper.xml
+
+---
+spring:
+  profiles: development
+  datasource:
+    url: jdbc:postgresql://postgres:5432/grupoa
+    username: miguel
+    password: passw0rd!
