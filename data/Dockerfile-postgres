@@ -1,0 +1,7 @@
+FROM postgres:latest
+
+ENV POSTGRES_USER miguel
+ENV POSTGRES_PASSWORD passw0rd!
+ENV POSTGRES_DB grupoa
+
+COPY ./migrate.sql /docker-entrypoint-initdb.d/

@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  postgres:
+    ports:
+      - 5432:5432
+    build:
+      context: ./data/
+      dockerfile: Dockerfile-postgres
+    image: postgres-grupoa
+    container_name: postgres-grupoa
+    restart: on-failure
