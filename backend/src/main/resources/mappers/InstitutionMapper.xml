@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grupoa.desafio.mapper.InstitutionMapper">
+
+    <resultMap id="mapInstitution" type="com.grupoa.desafio.model.Institution">
+        <result column="id" property="id"/>
+        <result column="description" property="description"/>
+        <result column="active" property="active"/>
+    </resultMap>
+
+    <sql id="cols_institution">
+        id,
+        description,
+        active
+    </sql>
+
+    <select id="getAllInstitutions" resultMap="mapInstitution">
+        select
+            <include refid="cols_institution"/>
+        from base.institution
+        where active = true
+    </select>
+
+</mapper>
