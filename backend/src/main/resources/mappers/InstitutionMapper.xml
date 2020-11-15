@@ -3,22 +3,22 @@
 <mapper namespace="com.grupoa.desafio.mapper.InstitutionMapper">
 
     <resultMap id="mapInstitution" type="com.grupoa.desafio.model.Institution">
-        <result column="id" property="id"/>
-        <result column="description" property="description"/>
-        <result column="active" property="active"/>
+        <result column="institution_id" property="id"/>
+        <result column="institution_description" property="description"/>
+        <result column="institution_active" property="active"/>
     </resultMap>
 
     <sql id="cols_institution">
-        id,
-        description,
-        active
+        institution.id as institution_id,
+        institution.description as institution_description,
+        institution.active as institution_active
     </sql>
 
     <select id="getAllInstitutions" resultMap="mapInstitution">
         select
             <include refid="cols_institution"/>
-        from base.institution
-        where active = true
+        from base.institution institution
+        where institution.active = true
     </select>
 
 </mapper>
