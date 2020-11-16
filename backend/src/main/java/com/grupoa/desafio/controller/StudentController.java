@@ -54,7 +54,7 @@ public class StudentController {
 
     @ApiOperation("DELETE destroy a student")
     @DeleteMapping
-    public ResponseEntity<String> deleteStudent (@RequestParam("studentId") Long studentId) throws OperationNotCompleteException {
+    public ResponseEntity<String> deleteStudent (@RequestParam("id") Long studentId) throws OperationNotCompleteException {
         studentService.delete(studentId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(Student.MSG_STUDENT_DELETED);
     }
