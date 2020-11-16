@@ -24,6 +24,10 @@ class StudentStoreModule extends VuexModule {
     SET_STUDENTS(students: Student[]){
         this.students = students
     }
+    @Mutation
+    ADD_STUDENT(student: Student){
+        this.students.push(student)
+    }
 
     @Action({ commit: 'SET_STUDENTS', rawError: true })
     async getStudents (): Promise<Student[] | undefined> {
@@ -32,6 +36,11 @@ class StudentStoreModule extends VuexModule {
         }catch (error) {
             return undefined
         }
+    }
+
+    @Action({ commit: 'ADD_STUDENT', rawError: true })
+    async createStudent (student: Student): Promise<Student | undefined> {
+        return await studentService.create(student)
     }
 }
 
