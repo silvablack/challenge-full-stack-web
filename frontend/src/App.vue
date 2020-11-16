@@ -1,19 +1,30 @@
 <template>
-  <v-app>
-    <v-main>
+  <transition
+    name="component-fade"
+    mode="out-in">
+    <component :is="layout">
       <router-view />
-    </v-main>
-  </v-app>
+    </component>
+  </transition>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component, Watch } from 'vue-property-decorator'
+import MainTemplate from '@/components/template/layout/MainTemplate.vue'
 
-export default Vue.extend({
-    name: 'App',
-    components: {},
-    data: () => ({
-    //
-    })
+@Component({
+  components: {
+    'main': MainTemplate
+  }
 })
+export default class App extends Vue {
+    get layout () {
+        return this.$route.meta.layout
+    }
+  
+    @Watch('$route.meta.title')
+    observerRoute (title: string) {
+      document.title = title
+    }
+}
 </script>
