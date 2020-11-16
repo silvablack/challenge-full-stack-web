@@ -18,7 +18,8 @@
       "webpack-env",
       "jest",
       "moment",
-      "vuelidate"
+      "vuelidate",
+      "vuetify"
     ],
     "paths": {
       "@/*": [

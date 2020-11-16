@@ -11,11 +11,6 @@
         app
         clipped-left
         dense>
-        <v-toolbar-title>
-          <img
-            height="40"
-            src="">
-        </v-toolbar-title>
         <v-spacer />
         <span class="white--text">Olá, <b>Usuário</b></span>
         <v-btn

@@ -9,22 +9,18 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
 import MainTemplate from '@/components/template/layout/MainTemplate.vue'
 
 @Component({
   components: {
-    'main': MainTemplate
+    MainTemplate
   }
 })
 export default class App extends Vue {
     get layout () {
+        document.title = this.$route.meta.title
         return this.$route.meta.layout
-    }
-  
-    @Watch('$route.meta.title')
-    observerRoute (title: string) {
-      document.title = title
     }
 }
 </script>

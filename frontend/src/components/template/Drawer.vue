@@ -2,14 +2,13 @@
   <v-navigation-drawer
     class="drawer"
     permanent
-    color="#000000"
     app>
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="title">
           <img
             alt="Grupo A Educação"
-            height="40px"
+            height="80px"
             :src="logo">
         </v-list-item-title>
       </v-list-item-content>
@@ -58,8 +57,3 @@ export default Vue.extend({
     }
 })
 </script>
-<style>
-  .theme--light .v-icon {
-    color: #FFFFFF !important;
-  }
-</style>
