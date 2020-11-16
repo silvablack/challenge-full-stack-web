@@ -46,7 +46,7 @@
             keyProperty="student.registration"
             useGeneratedKeys="true">
         insert into base.student (name, cpf, email, active, register_date)
-        values (#{student.name},#{student.cpf},#{student.email},true,now())
+        values (#{student.name},#{student.cpf},#{student.email},#{student.active},now())
     </insert>
 
     <update id="update">

@@ -40,6 +40,7 @@ public class StudentController {
     @ApiOperation("POST create a new student")
     @PostMapping
     public ResponseEntity<Student> createStudent (@Valid @RequestBody Student student) throws StudentAlreadyExistsException, OperationNotCompleteException {
+        student.setActive(true);
         studentService.create(student);
         return ResponseEntity.status(HttpStatus.CREATED).body(student);
     }
