@@ -6,7 +6,9 @@
         class="ma-5">
         <h1>Alunos</h1>
         <form-student :state="getFormState" />
-        <list-student @deleteStudent="deleteStudent" />
+        <list-student
+          @deleteStudent="deleteStudent"
+          @updateStudent="openFormStateUpdateStudent" />
       </v-col>
     </v-row>
   </v-main>
@@ -33,6 +35,10 @@ export default class Index extends Vue {
 
   async deleteStudent (student: Student) {
     await studentStore.deleteStudent(student)
+  }
+
+  openFormStateUpdateStudent () {
+    this.stateForm = StateForm.UPDATE
   }
 }
 </script>

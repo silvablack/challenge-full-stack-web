@@ -61,7 +61,7 @@
           color="blue darken-1"
           text
           @click="returnObject">
-          Cadastrar
+          {{ label }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -74,6 +74,7 @@ import { Student } from '@/types/student'
 @Component
 export default class BaseDialogForm extends Vue{
     @Prop({ default: false }) readonly dialog: boolean
+    @Prop({ default: 'Cadastrar' }) readonly label: string
   
     private student: Student = {} as Student
 

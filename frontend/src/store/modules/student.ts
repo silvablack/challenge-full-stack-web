@@ -33,6 +33,11 @@ class StudentStoreModule extends VuexModule {
         const index = this.students.findIndex(studentSearch => studentSearch.registration === registration)
         this.students.splice(index, 1)
     }
+    @Mutation
+    UPDATE_STUDENT(student: Student){
+        const index = this.students.findIndex(studentSearch => studentSearch.registration === student.registration)
+        this.students[index] = student
+    }
 
     @Action({ commit: 'SET_STUDENTS', rawError: true })
     async getStudents (): Promise<Student[] | undefined> {
@@ -52,6 +57,12 @@ class StudentStoreModule extends VuexModule {
     async deleteStudent (student: Student): Promise<number | undefined> {
         await studentService.destroy(student.registration)
         return student.registration
+    }
+
+    @Action({ commit: 'UPDATE_STUDENT', rawError: true })
+    async updateStudent (student: Student): Promise<Student | undefined> {
+        await studentService.update(student)
+        return student
     }
 }
 
