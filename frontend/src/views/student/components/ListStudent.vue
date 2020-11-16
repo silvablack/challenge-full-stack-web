@@ -3,13 +3,15 @@
     v-if="students"
     :loaded="loaded"
     :headers="headersStudents"
-    :items="students" />
+    :items="students"
+    @deleteItem="deleteStudent" />
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import BaseDataTable from '@/components/common/BaseDataTable.vue'
 import studentStore from '@/store/modules/student'
+import { Student } from '@/types/student'
 
 @Component({
     components: {
@@ -37,10 +39,14 @@ export default class ListStudent extends Vue {
                 const objectHeader = {  text: key.toUpperCase(), value: key.toLowerCase() }
                 headers.push(objectHeader)
             })
+            headers.push({ text: 'Actions', value: 'actions', sortable: false })
             return headers
         }
         return []
     }
-        
+
+    deleteStudent (student: Student) {
+      this.$emit('deleteStudent', student)
+    }
 }
 </script>

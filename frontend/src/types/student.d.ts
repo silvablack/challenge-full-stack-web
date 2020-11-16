@@ -1,5 +1,5 @@
 export interface Student {
-    registration?: number;
+    registration: number;
     name: string;
     cpf: string;
     email: string;

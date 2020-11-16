@@ -8,7 +8,21 @@
       :items="items"
       :items-per-page="5"
       no-data-text="Nenhum aluno encontrado"
-      class="elevation-1" />
+      class="elevation-1">
+      <template v-slot:item.actions="{ item }">
+        <v-icon
+          small
+          class="mr-2"
+          @click="editItem(item)">
+          mdi-pencil
+        </v-icon>
+        <v-icon
+          small
+          @click="deleteItem(item)">
+          mdi-delete
+        </v-icon>
+      </template>
+    </v-data-table>
     <v-skeleton-loader
       v-else
       class="pt-2"
@@ -44,6 +58,14 @@ export default Vue.extend({
             handler (loaded) {
                 this.load = loaded
             }
+        }
+    },
+    methods: {
+        editItem (item) {
+            this.$emit('editItem', item)
+        },
+        deleteItem (item) {
+            this.$emit('deleteItem', item)
         }
     }
 })

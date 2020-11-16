@@ -28,6 +28,11 @@ class StudentStoreModule extends VuexModule {
     ADD_STUDENT(student: Student){
         this.students.push(student)
     }
+    @Mutation
+    REMOVE_STUDENT(registration: number){
+        const index = this.students.findIndex(studentSearch => studentSearch.registration === registration)
+        this.students.splice(index, 1)
+    }
 
     @Action({ commit: 'SET_STUDENTS', rawError: true })
     async getStudents (): Promise<Student[] | undefined> {
@@ -41,6 +46,12 @@ class StudentStoreModule extends VuexModule {
     @Action({ commit: 'ADD_STUDENT', rawError: true })
     async createStudent (student: Student): Promise<Student | undefined> {
         return await studentService.create(student)
+    }
+
+    @Action({ commit: 'REMOVE_STUDENT', rawError: true })
+    async deleteStudent (student: Student): Promise<number | undefined> {
+        await studentService.destroy(student.registration)
+        return student.registration
     }
 }
 

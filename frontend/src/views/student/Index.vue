@@ -6,7 +6,7 @@
         class="ma-5">
         <h1>Alunos</h1>
         <form-student :state="getFormState" />
-        <list-student />
+        <list-student @deleteStudent="deleteStudent" />
       </v-col>
     </v-row>
   </v-main>
@@ -17,6 +17,8 @@ import { Vue, Component } from 'vue-property-decorator'
 import ListStudent from '@/views/student/components/ListStudent.vue'
 import FormStudent from '@/views/student/components/FormStudent.vue'
 import { StateForm } from '@/domain/student/enums'
+import { Student } from '@/types/student'
+import studentStore from '@/store/modules/student'
 
 @Component({
   components: { ListStudent, FormStudent }
@@ -27,6 +29,10 @@ export default class Index extends Vue {
   
   get getFormState () {
     return this.stateForm
+  }
+
+  async deleteStudent (student: Student) {
+    await studentStore.deleteStudent(student)
   }
 }
 </script>
