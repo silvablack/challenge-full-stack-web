@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grupoa.desafio.mapper.StudentMapper">
+
+    <resultMap id="mapStudent" type="com.grupoa.desafio.model.Student">
+        <result column="student_registration" property="registration"/>
+        <result column="student_name" property="name"/>
+        <result column="student_cpf" property="cpf"/>
+        <result column="student_email" property="email"/>
+        <result column="student_active" property="active"/>
+    </resultMap>
+
+    <sql id="cols_student">
+        student.registration as student_registration,
+        student.name as student_name,
+        student.cpf as student_cpf,
+        student.email as student_email,
+        student.active as student_active
+    </sql>
+
+    <select id="getByRegistration" resultMap="mapStudent">
+        select
+            <include refid="cols_student"/>
+        from base.student student
+        where student.registration = #{registrationId}
+        AND student.active = true
+    </select>
+
+    <select id="getByCPF" resultMap="mapStudent">
+        select
+        <include refid="cols_student"/>
+        from base.student student
+        where student.cpf = #{cpf}
+        AND student.active = true
+    </select>
+
+    <select id="getAll" resultMap="mapStudent">
+        select
+            <include refid="cols_student"/>
+        from base.student student
+        where student.active = true
+    </select>
+
+    <insert id="create"
+            parameterType="com.grupoa.desafio.model.Student"
+            keyProperty="student.registration"
+            useGeneratedKeys="true">
+        insert into base.student (name, cpf, email, active, register_date)
+        values (#{student.name},#{student.cpf},#{student.email},true,now())
+    </insert>
+
+    <update id="update">
+        update base.student set
+            name = #{student.name},
+            cpf = #{student.cpf},
+            email = #{student.email}
+        where registration = #{student.registration}
+    </update>
+
+    <delete id="destroy">
+        delete from base.student where registration = #{registrationId}
+    </delete>
+
+    <update id="softDelete">
+        update base.student where registration = #{registrationId}
+    </update>
+
+</mapper>
