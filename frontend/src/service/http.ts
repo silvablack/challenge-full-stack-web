@@ -3,5 +3,8 @@ import { baseApiUrlWsBackend } from '@/config'
 
 export const httpBackend = axios.create({
   baseURL: baseApiUrlWsBackend,
-  timeout: 180000
+  timeout: 180000,
+  headers: {
+    'Access-Control-Allow-Origin': '*'
+  }
 })
