@@ -9,6 +9,6 @@ mybatis:
 spring:
   profiles: development
   datasource:
-    url: jdbc:postgresql://localhost:5432/grupoa
+    url: jdbc:postgresql://postgres:5432/grupoa
     username: miguel
     password: passw0rd!
