@@ -21,3 +21,15 @@ services:
     depends_on:
       - postgres
     restart: on-failure
+
+  frontend:
+    ports:
+      - 8090:80
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    image: challenge-frontend
+    container_name: challenge-frontend
+    depends_on:
+      - springboot
+    restart: on-failure
