@@ -83,7 +83,7 @@ with the body as follows:
 
 Students can also be updated through the endpoint:
 
-    POST: http://localhost:8080/api/v1/student
+    PUT: http://localhost:8080/api/v1/student
 
 with the body as follows:
 
@@ -95,6 +95,10 @@ with the body as follows:
   "email": "miguel@gmail.com"
 }
 ```
+
+Students can be delete by ID through the endpoint:
+
+    DELETE: http://localhost:8080/api/v1/student?id=1
 
 **Impediments**
 Some challenge requirements could not be fully implemented, such as:
