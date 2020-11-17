@@ -7,9 +7,10 @@
       <v-btn
         color="primary"
         dark
+        data-cy="submit_register"
         v-bind="attrs"
         v-on="on">
-        Cadastrar
+        {{ label }}
       </v-btn>
     </template>
     <v-card>
